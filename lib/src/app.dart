@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_finance_app/src/features/budget/data/bloc_providers.dart';
 import 'package:personal_finance_app/src/features/pots/data/bloc_providers.dart';
-import 'package:personal_finance_app/src/features/reoccuring_bills/data/bloc_providers.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 import 'features/home/data/bloc_providers.dart';
 import 'features/transactions/data/bloc_providers.dart';
@@ -18,7 +17,6 @@ class MyApp extends StatelessWidget {
         ...transactionsBlocProviders,
         ...budgetBlocProviders,
         ...potsBlocProviders,
-        ...reoccuringBillsBlocProviders,
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
