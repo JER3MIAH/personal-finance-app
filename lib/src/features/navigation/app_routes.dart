@@ -19,7 +19,8 @@ final Map<String, Widget Function(BuildContext)> splashRoutes = {
 
 //* Home
 final Map<String, Widget Function(BuildContext)> homeRoutes = {
-  HomeRoutes.main: (context) => MainScreen(),
+  HomeRoutes.main: (context) =>
+      DeviceType(context).isDesktop ? DesktopMainScreen() : MainScreen(),
 };
 
 //* Transactions
