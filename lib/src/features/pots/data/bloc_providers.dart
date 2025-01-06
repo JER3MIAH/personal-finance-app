@@ -4,7 +4,7 @@ import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pot
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_event.dart';
 
 final List<BlocProvider> potsBlocProviders = [
-  BlocProvider(
-    create: (context) => getIt<PotsBloc>()..add(GetPots()),
+  BlocProvider<PotsBloc>(
+    create: (_) => getIt<PotsBloc>()..add(GetPots()),
   ),
 ];

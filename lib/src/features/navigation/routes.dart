@@ -6,6 +6,7 @@ class SplashRoutes {
 
 class HomeRoutes extends AppRoutes {
   static const main = '/';
+  static const overview = '/overviewScreen';
 }
 
 class TransactionsRoutes extends AppRoutes {}
