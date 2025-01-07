@@ -36,15 +36,19 @@ class AppBottomTabBar extends HookWidget {
               child: TabBar(
                 onTap: setIndex,
                 indicatorPadding: EdgeInsets.symmetric(
-                  horizontal: switch (selectedIndex) {
-                    0 => -12,
-                    1 => -10,
-                    2 => -20,
-                    3 => -25,
-                    _ => -10,
-                  },
-                ).copyWith(top: 10),
-                indicatorSize: TabBarIndicatorSize.label,
+                  horizontal: isMobile
+                      ? 10
+                      : switch (selectedIndex) {
+                          0 => -12,
+                          1 => -10,
+                          2 => -20,
+                          3 => -25,
+                          _ => -10,
+                        },
+                ).copyWith(top: isMobile ? 5 : 10),
+                indicatorSize: isMobile
+                    ? TabBarIndicatorSize.tab
+                    : TabBarIndicatorSize.label,
                 indicator: BoxDecoration(
                   color: appColors.beige100,
                   border: Border(
@@ -55,21 +59,24 @@ class AppBottomTabBar extends HookWidget {
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(spacing100)),
                 ),
-                labelColor: appColors.green,
+                labelColor: appColors.grey900,
                 labelPadding: EdgeInsets.symmetric(horizontal: 10),
                 unselectedLabelColor: appColors.grey300,
-                labelStyle: textPreset5Bold,
+                labelStyle: textPreset5Bold.copyWith(color: appColors.grey900),
                 unselectedLabelStyle: textPreset5Bold,
                 tabs: List.generate(
                   labelIconMap.length,
                   (index) {
                     final item = labelIconMap.entries.toList()[index];
                     return Tab(
-                      icon: SvgAsset(
-                        item.value,
-                        color: selectedIndex == index
-                            ? appColors.green
-                            : appColors.grey300,
+                      icon: Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: SvgAsset(
+                          item.value,
+                          color: selectedIndex == index
+                              ? appColors.green
+                              : appColors.grey300,
+                        ),
                       ),
                       text: !isMobile ? item.key : null,
                     );
