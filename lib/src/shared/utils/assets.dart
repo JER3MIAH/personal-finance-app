@@ -11,6 +11,7 @@ final String iconEllipsis = 'icon-ellipsis'.svg;
 final String iconFilterMobile = 'icon-filter-mobile'.svg;
 final String iconHidePassword = 'icon-hide-password'.svg;
 final String iconMinimizeMenu = 'icon-minimize-menu'.svg;
+final String iconExpandMenu = 'icon-expand-menu'.svg;
 final String iconNavBudgets = 'icon-nav-budgets'.svg;
 final String iconNavOverview = 'icon-nav-overview'.svg;
 final String iconNavPots = 'icon-nav-pots'.svg;
