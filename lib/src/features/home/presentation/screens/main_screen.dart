@@ -22,22 +22,25 @@ class MainScreen extends StatelessWidget {
 
     return BlocBuilder<BottomNavBarCubit, int>(
       builder: (_, selectedIndex) {
-        return Scaffold(
-          backgroundColor: theme.inversePrimary,
-          body: Container(
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: theme.surface,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(12),
+        return DefaultTabController(
+          length: 4,
+          child: Scaffold(
+            backgroundColor: theme.inversePrimary,
+            body: Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: theme.surface,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(12),
+                ),
+              ),
+              child: IndexedStack(
+                index: selectedIndex,
+                children: pages,
               ),
             ),
-            child: IndexedStack(
-              index: selectedIndex,
-              children: pages,
-            ),
+            bottomNavigationBar: AppBottomTabBar(),
           ),
-          bottomNavigationBar: AppBottomNavBar(),
         );
       },
     );

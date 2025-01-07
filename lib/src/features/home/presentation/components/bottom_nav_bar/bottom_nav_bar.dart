@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:personal_finance_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
-class AppBottomNavBar extends HookWidget {
-  const AppBottomNavBar({super.key});
+class AppBottomTabBar extends HookWidget {
+  const AppBottomTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,52 +31,50 @@ class AppBottomNavBar extends HookWidget {
               splashFactory: NoSplash.splashFactory,
               hoverColor: Colors.transparent,
             ),
-            child: BottomNavigationBar(
-              currentIndex: selectedIndex,
-              onTap: setIndex,
-              enableFeedback: false,
-              backgroundColor: appColors.grey900,
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: appColors.green,
-              unselectedItemColor: appColors.grey300,
-              showSelectedLabels: !isMobile,
-              showUnselectedLabels: !isMobile,
-              unselectedLabelStyle: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: appColors.beige100,
-              ),
-              selectedLabelStyle: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: appColors.grey900,
-              ),
-              items: List.generate(
-                labelIconMap.length,
-                (index) {
-                  final item = labelIconMap.entries.toList()[index];
-                  return BottomNavigationBarItem(
-                    icon: SvgAsset(
-                      item.value,
-                      color: appColors.grey300,
-                    ),
-                    label: item.key,
-                    activeIcon: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: isMobile && (selectedIndex == index)
-                            ? appColors.beige100
-                            : null,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: SvgAsset(
+            child: Container(
+              color: appColors.grey900,
+              child: TabBar(
+                onTap: setIndex,
+                indicatorPadding: EdgeInsets.symmetric(
+                  horizontal: switch (selectedIndex) {
+                    0 => -12,
+                    1 => -10,
+                    2 => -20,
+                    3 => -25,
+                    _ => -10,
+                  },
+                ).copyWith(top: 10),
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                  color: appColors.beige100,
+                  border: Border(
+                      bottom: BorderSide(
+                    width: 4,
+                    color: appColors.green,
+                  )),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(spacing100)),
+                ),
+                labelColor: appColors.green,
+                labelPadding: EdgeInsets.symmetric(horizontal: 10),
+                unselectedLabelColor: appColors.grey300,
+                labelStyle: textPreset5Bold,
+                unselectedLabelStyle: textPreset5Bold,
+                tabs: List.generate(
+                  labelIconMap.length,
+                  (index) {
+                    final item = labelIconMap.entries.toList()[index];
+                    return Tab(
+                      icon: SvgAsset(
                         item.value,
-                        color: appColors.green,
+                        color: selectedIndex == index
+                            ? appColors.green
+                            : appColors.grey300,
                       ),
-                    ),
-                  );
-                },
+                      text: !isMobile ? item.key : null,
+                    );
+                  },
+                ),
               ),
             ),
           ),

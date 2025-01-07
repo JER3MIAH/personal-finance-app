@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = DeviceType(context).isMobile;
+    final isDesktop = DeviceType(context).isDesktop;
 
     final border = OutlineInputBorder(
       borderSide: BorderSide(color: appColors.beige500),
@@ -58,8 +58,8 @@ class AppTextField extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: 44,
           maxHeight: 44,
-          minWidth: isMobile ? 200 : 320,
-          maxWidth: isMobile ? 200 : 320,
+          minWidth: isDesktop ? 320 : 200,
+          maxWidth: isDesktop ? 320 : 200,
         ),
         focusedBorder: border,
         enabledBorder: border,
