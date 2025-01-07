@@ -4,8 +4,7 @@ import 'package:personal_finance_app/src/shared/shared.dart';
 class AppButton extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;
-  final double fontSize;
-  final double bHeight;
+  final double? fontSize;
   final bool expanded;
   final Color? color;
   final Color? textColor;
@@ -14,8 +13,7 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.title,
     this.onTap,
-    this.fontSize = 14,
-    this.bHeight = 41,
+    this.fontSize,
     this.expanded = false,
     this.color,
     this.textColor,
@@ -23,27 +21,55 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
     return BounceInAnimation(
       child: ElevatedButton(
         onPressed: onTap,
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(color ?? theme.primary),
+          backgroundColor: WidgetStatePropertyAll(color ?? appColors.grey900),
           elevation: WidgetStatePropertyAll(0),
-          minimumSize: WidgetStatePropertyAll(
-            expanded ? Size(double.infinity, bHeight) : null,
-          ),
-          fixedSize: WidgetStatePropertyAll(Size.fromHeight(bHeight)),
+          padding: WidgetStatePropertyAll(EdgeInsets.all(spacing200)),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(spacing100),
             ),
           ),
         ),
-        child: AppText(
+        child: Text(
           title,
-          fontSize: fontSize,
-          color: textColor ?? appColors.white,
+          style: textPreset4Bold.copyWith(
+            fontSize: fontSize,
+            color: textColor ?? appColors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AddButton extends StatelessWidget {
+  final VoidCallback onTap;
+  const AddButton({
+    super.key,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: BounceInAnimation(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(spacing100),
+          decoration: BoxDecoration(
+            color: appColors.grey900,
+            borderRadius: BorderRadius.circular(spacing100),
+          ),
+          child: Icon(
+            Icons.add,
+            color: appColors.white,
+            size: 20,
+          ),
         ),
       ),
     );

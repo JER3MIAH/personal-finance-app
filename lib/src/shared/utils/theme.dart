@@ -19,6 +19,7 @@ final textPreset1 = TextStyle(
   fontSize: 32.0,
   height: 1.2,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -27,6 +28,7 @@ final textPreset2 = TextStyle(
   fontSize: 20.0,
   height: 1.2,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -35,6 +37,7 @@ final textPreset3 = TextStyle(
   fontSize: 16.0,
   height: 1.5,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -43,6 +46,7 @@ final textPreset4 = TextStyle(
   fontSize: 14.0,
   height: 1.5,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -51,6 +55,7 @@ final textPreset4Bold = TextStyle(
   fontSize: 14.0,
   height: 1.5,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -59,6 +64,7 @@ final textPreset5 = TextStyle(
   fontSize: 12.0,
   height: 1.5,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
 
@@ -67,5 +73,6 @@ final textPreset5Bold = TextStyle(
   fontSize: 12.0,
   height: 1.5,
   letterSpacing: 0.0,
+  fontFamily: publicSans,
   color: appColors.grey900,
 );
