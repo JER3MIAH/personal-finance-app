@@ -73,7 +73,6 @@ class AppPopUpButton extends StatelessWidget {
             return PopupMenuItem(
               onTap: () {
                 selectedItem.value = menuItem;
-                
               },
               child: Text(
                 menuItem,
@@ -87,6 +86,50 @@ class AppPopUpButton extends StatelessWidget {
         );
       },
       child: SvgAsset(icon),
+    );
+  }
+}
+
+class EditAndDeletePopUpButton extends StatelessWidget {
+  final VoidCallback onEdit, onDelete;
+  const EditAndDeletePopUpButton({
+    super.key,
+    required this.onEdit,
+    required this.onDelete,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<Widget>(
+      padding: EdgeInsets.zero,
+      position: PopupMenuPosition.under,
+      constraints: BoxConstraints(maxHeight: 300),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(spacing100),
+      ),
+      color: appColors.white,
+      itemBuilder: (_) {
+        return [
+          PopupMenuItem(
+            onTap: onEdit,
+            child: Text(
+              'Edit Pot',
+              style: textPreset4,
+            ),
+          ),
+          PopupMenuItem(
+            onTap: onDelete,
+            child: Text(
+              'Delete Pot',
+              style: textPreset4.copyWith(color: appColors.red),
+            ),
+          ),
+        ];
+      },
+      child: Icon(
+        Icons.more_horiz,
+        color: appColors.grey300,
+      ),
     );
   }
 }

@@ -26,6 +26,7 @@ class AppButton extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color ?? appColors.grey900),
+          overlayColor: WidgetStatePropertyAll(Colors.transparent),
           elevation: WidgetStatePropertyAll(0),
           padding: WidgetStatePropertyAll(EdgeInsets.all(spacing200)),
           shape: WidgetStatePropertyAll(

@@ -20,7 +20,7 @@ class AppColors {
   final purple2 = Color(0xFFAF81BA);
   final turquoise = Color(0xFF597C7C);
   final brown = Color(0xFF93674F);
-  final nagenta = Color(0xFF934F6F);
+  final magenta = Color(0xFF934F6F);
   final blue = Color(0xFF3F82B2);
   final navyGrey = Color(0xFF97A0AC);
   final armyGreen = Color(0xFF7F9161);
