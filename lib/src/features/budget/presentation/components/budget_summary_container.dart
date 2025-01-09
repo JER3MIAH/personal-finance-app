@@ -18,7 +18,6 @@ class BudgetSummaryContainer extends StatelessWidget {
 
         return Container(
           width: 328,
-          height: 500,
           margin: EdgeInsets.only(
             bottom: spacing200,
             right: isDesktop ? spacing200 : 0,
