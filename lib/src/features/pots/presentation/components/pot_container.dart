@@ -36,6 +36,7 @@ class PotContainer extends StatelessWidget {
                 color: potTheme,
               ),
               EditAndDeletePopUpButton(
+                title: 'Pot',
                 onEdit: onTapEdit,
                 onDelete: onTapDelete,
               ),

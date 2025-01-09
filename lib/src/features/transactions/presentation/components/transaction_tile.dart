@@ -4,9 +4,13 @@ import 'package:personal_finance_app/src/shared/shared.dart';
 
 class TransactionTile extends StatelessWidget {
   final Transaction transaction;
+  final bool hasBorder;
+  final Color? borderColor;
   const TransactionTile({
     super.key,
     required this.transaction,
+    this.hasBorder = true,
+    this.borderColor,
   });
 
   @override
@@ -14,11 +18,13 @@ class TransactionTile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: appColors.grey100,
-          ),
-        ),
+        border: hasBorder
+            ? Border(
+                bottom: BorderSide(
+                  color: borderColor ?? appColors.grey100,
+                ),
+              )
+            : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

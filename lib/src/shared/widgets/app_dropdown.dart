@@ -91,9 +91,11 @@ class AppPopUpButton extends StatelessWidget {
 }
 
 class EditAndDeletePopUpButton extends StatelessWidget {
+  final String title;
   final VoidCallback onEdit, onDelete;
   const EditAndDeletePopUpButton({
     super.key,
+    required this.title,
     required this.onEdit,
     required this.onDelete,
   });
@@ -113,14 +115,14 @@ class EditAndDeletePopUpButton extends StatelessWidget {
           PopupMenuItem(
             onTap: onEdit,
             child: Text(
-              'Edit Pot',
+              'Edit $title',
               style: textPreset4,
             ),
           ),
           PopupMenuItem(
             onTap: onDelete,
             child: Text(
-              'Delete Pot',
+              'Delete $title',
               style: textPreset4.copyWith(color: appColors.red),
             ),
           ),
