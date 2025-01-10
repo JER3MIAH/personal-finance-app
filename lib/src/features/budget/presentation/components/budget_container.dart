@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/src/features/budget/data/models/models.dart';
+import 'package:personal_finance_app/src/features/budget/logic/blocs/blocs.dart';
 import 'package:personal_finance_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
 import 'package:personal_finance_app/src/features/transactions/data/models/transaction.dart';
 import 'package:personal_finance_app/src/features/transactions/presentation/components/components.dart';
@@ -17,12 +18,27 @@ class BudgetContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final budgetBloc = context.read<BudgetBloc>();
     final budgetTheme = getColorFromTheme(budget.theme);
 
     double percentage = (budget.spent / budget.maximum) * 100;
 
     void onTapEdit() {}
-    void onTapDelete() {}
+    void onTapDelete() {
+      AppDialog.dialog(
+        context,
+        DeleteDialog(
+          title: budget.category,
+          description:
+              'Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.',
+          onDelete: () {
+            budgetBloc.add(
+              DeleteBudget(budgetCategory: budget.category),
+            );
+          },
+        ),
+      );
+    }
 
     return Container(
       margin: EdgeInsets.only(bottom: spacing200),

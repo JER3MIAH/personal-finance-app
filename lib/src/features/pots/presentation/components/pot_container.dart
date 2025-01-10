@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/data/models/pot.dart';
+import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_bloc.dart';
+import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_event.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
 class PotContainer extends StatelessWidget {
@@ -11,12 +14,25 @@ class PotContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final potBloc = context.read<PotsBloc>();
     final potTheme = getColorFromTheme(pot.theme);
 
     double percentage = (pot.total / pot.target) * 100;
 
     void onTapEdit() {}
-    void onTapDelete() {}
+    void onTapDelete() {
+      AppDialog.dialog(
+        context,
+        DeleteDialog(
+          title: pot.name,
+          description:
+              'Are you sure you want to delete this pot? This action cannot be reversed, and all the data inside it will be removed forever.',
+          onDelete: () {
+            potBloc.add(DeletePot(potName: pot.name));
+          },
+        ),
+      );
+    }
 
     return Container(
       padding: const EdgeInsets.all(spacing300),
