@@ -8,6 +8,7 @@ class AppButton extends StatelessWidget {
   final bool expanded;
   final Color? color;
   final Color? textColor;
+  final double? height;
 
   const AppButton({
     super.key,
@@ -17,33 +18,49 @@ class AppButton extends StatelessWidget {
     this.expanded = false,
     this.color,
     this.textColor,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BounceInAnimation(
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(color ?? appColors.grey900),
-          overlayColor: WidgetStatePropertyAll(Colors.transparent),
-          elevation: WidgetStatePropertyAll(0),
-          padding: WidgetStatePropertyAll(EdgeInsets.all(spacing200)),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(spacing100),
+    Widget body() {
+      return BounceInAnimation(
+        child: ElevatedButton(
+          onPressed: onTap,
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(color ?? appColors.grey900),
+            overlayColor: WidgetStatePropertyAll(Colors.transparent),
+            elevation: WidgetStatePropertyAll(0),
+            padding: WidgetStatePropertyAll(EdgeInsets.all(spacing200)),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(spacing100),
+              ),
+            ),
+            minimumSize: height != null
+                ? WidgetStatePropertyAll(Size.fromHeight(height!))
+                : null,
+          ),
+          child: Text(
+            title,
+            style: textPreset4Bold.copyWith(
+              fontSize: fontSize,
+              color: textColor ?? appColors.white,
             ),
           ),
         ),
-        child: Text(
-          title,
-          style: textPreset4Bold.copyWith(
-            fontSize: fontSize,
-            color: textColor ?? appColors.white,
-          ),
-        ),
-      ),
-    );
+      );
+    }
+
+    if (expanded) {
+      return Row(
+        children: [
+          Expanded(child: body()),
+        ],
+      );
+    }
+
+    return body();
   }
 }
 

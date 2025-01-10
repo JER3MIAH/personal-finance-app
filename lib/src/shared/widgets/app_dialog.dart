@@ -28,7 +28,7 @@ class AppDialog {
             shadowColor: bgColor ?? theme.surfaceContainerHigh,
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: 440,
+                maxWidth: 560,
               ),
               child: content,
             ),
