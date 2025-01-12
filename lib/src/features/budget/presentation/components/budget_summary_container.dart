@@ -29,6 +29,7 @@ class BudgetSummaryContainer extends StatelessWidget {
           ),
           child: Column(
             spacing: spacing200,
+            mainAxisSize: MainAxisSize.min,
             children: [
               BudgetSummaryPieChart(
                 budgets: budgets,
@@ -42,15 +43,18 @@ class BudgetSummaryContainer extends StatelessWidget {
                   ),
                 ],
               ),
-              ...List.generate(
-                budgets.length,
-                (index) {
-                  return _buildSummaryItem(
-                    budget: budgets[index],
-                    hasBorder: index != (budgets.length - 1),
-                  );
-                },
-              )
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(
+                  budgets.length,
+                  (index) {
+                    return _buildSummaryItem(
+                      budget: budgets[index],
+                      hasBorder: index != (budgets.length - 1),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         );

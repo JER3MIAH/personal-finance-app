@@ -11,7 +11,7 @@ const spacing300 = 24.0;
 const spacing400 = 32.0;
 const spacing500 = 40.0;
 
-const FILTER_OPTIONS = [
+const FILTER_OPTIONS_ALL = [
   'All Transactions',
   'General',
   'Entertainment',
@@ -24,6 +24,9 @@ const FILTER_OPTIONS = [
   'Lifestyle',
   'Shopping',
 ];
+
+final FILTER_OPTIONS = FILTER_OPTIONS_ALL.skip(1).toList();
+
 const SORT_OPTIONS = [
   'Latest',
   'Oldest',

@@ -12,7 +12,7 @@ class TransactionScreen extends HookWidget {
   Widget build(BuildContext context) {
     final isMobile = DeviceType(context).isMobile;
     final searchController = useTextEditingController();
-    final selectedFilter = useState<String>(FILTER_OPTIONS[0]);
+    final selectedFilter = useState<String>(FILTER_OPTIONS_ALL[0]);
     final selectedSort = useState<String>(SORT_OPTIONS[0]);
 
     void addTransaction() {
@@ -79,13 +79,13 @@ class TransactionScreen extends HookWidget {
                         if (isMobile)
                           AppPopUpButton(
                             selectedItem: selectedFilter,
-                            items: FILTER_OPTIONS,
+                            items: FILTER_OPTIONS_ALL,
                             icon: iconFilterMobile,
                           )
                         else
                           AppDropdown(
                             dropdownValue: selectedFilter,
-                            items: FILTER_OPTIONS,
+                            items: FILTER_OPTIONS_ALL,
                           ),
                       ],
                     ),

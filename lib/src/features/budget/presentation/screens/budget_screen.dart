@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance_app/src/features/budget/data/models/models.dart';
 import 'package:personal_finance_app/src/features/budget/logic/blocs/blocs.dart';
 import 'package:personal_finance_app/src/features/budget/presentation/components/components.dart';
 import 'package:personal_finance_app/src/features/transactions/logic/blocs/blocs.dart';
@@ -15,21 +14,14 @@ class BudgetScreen extends StatelessWidget {
     final isMobile = DeviceType(context).isMobile;
     final isDesktop = DeviceType(context).isDesktop;
 
-    final budgets = List.generate(
-      5,
-      (index) => Budget(
-        category: 'category',
-        maximum: 2000,
-        theme: 'Red',
-        spent: 955,
-      ),
-    );
-
-    void addBudget() {}
+    void addBudget() {
+      AppDialog.dialog(context, AddBudgetDialog());
+    }
 
     return Scaffold(
       body: BlocBuilder<BudgetBloc, BudgetState>(
         builder: (_, budgetState) {
+          final budgets = budgetState.budgets;
           return BlocBuilder<TransactionBloc, TransactionState>(
             builder: (_, transactionState) {
               final transactions = transactionState.transactions;
@@ -99,7 +91,9 @@ class BudgetScreen extends StatelessWidget {
                           itemCount: budgets.length + 1,
                           itemBuilder: (_, index) {
                             if (index == 0) {
-                              return BudgetSummaryContainer();
+                              return budgets.isEmpty
+                                  ? SizedBox.shrink()
+                                  : BudgetSummaryContainer();
                             }
                             final budget = budgets[index - 1];
                             return BudgetContainer(

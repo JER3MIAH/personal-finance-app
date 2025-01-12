@@ -7,6 +7,7 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final VoidCallback? onTapClear;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
   final String? leadingIcon;
   final void Function(String)? onChanged;
   const AppTextField({
@@ -18,6 +19,7 @@ class AppTextField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.leadingIcon,
+    this.keyboardType,
   });
 
   @override
@@ -33,7 +35,7 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       cursorColor: appColors.grey900,
       style: textPreset4,
-      keyboardType: TextInputType.text,
+      keyboardType: keyboardType ?? TextInputType.text,
       validator: validator,
       onChanged: onChanged,
       decoration: InputDecoration(

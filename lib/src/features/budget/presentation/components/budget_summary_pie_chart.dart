@@ -37,12 +37,15 @@ class BudgetSummaryPieChart extends StatelessWidget {
                     budgets.length,
                     (index) {
                       final budget = budgets[index];
+                      final value = (budget.spent / budget.maximum) > 0
+                          ? (budget.spent / budget.maximum)
+                          : 10.0;
                       return PieChartSectionData(
                         title: budget.category,
                         showTitle: false,
-                        radius: 50,
+                        radius: 30,
                         color: getColorFromTheme(budget.theme),
-                        value: (budget.spent / budget.maximum),
+                        value: value,
                       );
                     },
                   ),

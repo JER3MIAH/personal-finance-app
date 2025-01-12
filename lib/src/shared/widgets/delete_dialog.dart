@@ -48,7 +48,10 @@ class DeleteDialog extends StatelessWidget {
               AppButton(
                 title: 'Yes, Confirm Deletion',
                 color: appColors.red,
-                onTap: onDelete,
+                onTap: () {
+                  closeModal();
+                  onDelete();
+                },
                 height: 53,
                 expanded: true,
               ),

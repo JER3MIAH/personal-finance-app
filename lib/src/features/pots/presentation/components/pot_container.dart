@@ -81,7 +81,7 @@ class PotContainer extends StatelessWidget {
               LinearProgressIndicator(
                 backgroundColor: appColors.beige100,
                 color: potTheme,
-                value: percentage / 100,
+                value: (percentage / 100).isNaN ? 0 : (percentage / 100),
                 minHeight: 8,
                 borderRadius: BorderRadius.circular(spacing50),
               ),

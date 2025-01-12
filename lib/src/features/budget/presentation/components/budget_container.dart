@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/src/features/budget/data/models/models.dart';
 import 'package:personal_finance_app/src/features/budget/logic/blocs/blocs.dart';
+import 'package:personal_finance_app/src/features/budget/presentation/components/components.dart';
 import 'package:personal_finance_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
 import 'package:personal_finance_app/src/features/transactions/data/models/transaction.dart';
 import 'package:personal_finance_app/src/features/transactions/presentation/components/components.dart';
@@ -23,7 +24,15 @@ class BudgetContainer extends StatelessWidget {
 
     double percentage = (budget.spent / budget.maximum) * 100;
 
-    void onTapEdit() {}
+    void onTapEdit() {
+      AppDialog.dialog(
+        context,
+        AddBudgetDialog(
+          budget: budget,
+        ),
+      );
+    }
+
     void onTapDelete() {
       AppDialog.dialog(
         context,
@@ -84,7 +93,7 @@ class BudgetContainer extends StatelessWidget {
               LinearProgressIndicator(
                 backgroundColor: appColors.beige100,
                 color: budgetTheme,
-                value: percentage / 100,
+                value: (percentage / 100).isNaN ? 0 : (percentage / 100),
                 minHeight: 30,
                 borderRadius: BorderRadius.circular(spacing50),
               ),
@@ -149,11 +158,14 @@ class BudgetContainer extends StatelessWidget {
               width: 4,
               height: 43,
               decoration: BoxDecoration(
-                color: isSpent ? appColors.green : appColors.beige100,
+                color: isSpent
+                    ? getColorFromTheme(budget.theme)
+                    : appColors.beige100,
                 borderRadius: BorderRadius.circular(spacing200),
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(

@@ -22,6 +22,7 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
 
   void _addNewBudget(AddNewBudget event, Emitter<BudgetState> emit) {
     final budgets = [event.budget, ...state.budgets];
+    localService.addNewBudget(event.budget);
     emit(state.copyWith(budgets: budgets));
   }
 
