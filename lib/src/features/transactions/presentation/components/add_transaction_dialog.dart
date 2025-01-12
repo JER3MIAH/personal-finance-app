@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:personal_finance_app/src/features/budget/data/models/budget.dart';
+import 'package:personal_finance_app/src/features/transactions/data/models/models.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
-class AddBudgetDialog extends StatelessWidget {
-  final Budget? budget;
-  const AddBudgetDialog({
+class AddTransactionDialog extends StatelessWidget {
+  final Transaction? transaction;
+  const AddTransactionDialog({
     super.key,
-    required this.budget,
+    this.transaction,
   });
 
   @override
@@ -25,7 +25,7 @@ class AddBudgetDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${budget == null ? 'Add' : 'Edit'} Budget',
+                '${transaction == null ? 'Add' : 'Edit'} Transaction',
                 style: textPreset1,
               ),
               GestureDetector(
@@ -35,16 +35,16 @@ class AddBudgetDialog extends StatelessWidget {
             ],
           ),
           Text(
-            budget == null
-                ? 'Choose a category to set a spending budget. These categories can help you monitor spending.'
-                : 'As your budgets change, feel free to update your spending limits.',
+            transaction == null
+                ? 'Recorda your transaction'
+                : 'Modify transaction',
             style: textPreset4.copyWith(color: appColors.grey500),
           ),
           //*
 
           //*
           AppButton(
-            title: budget == null ? 'Add Budget' : 'Save Changes',
+            title: transaction == null ? 'Add Transaction' : 'Save Changes',
             color: appColors.black,
             onTap: () {},
             height: 53,

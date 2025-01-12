@@ -15,7 +15,9 @@ class TransactionScreen extends HookWidget {
     final selectedFilter = useState<String>(FILTER_OPTIONS[0]);
     final selectedSort = useState<String>(SORT_OPTIONS[0]);
 
-    void addTransaction() {}
+    void addTransaction() {
+      AppDialog.dialog(context, AddTransactionDialog());
+    }
 
     return Scaffold(
       body: AppColumn(
