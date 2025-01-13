@@ -43,10 +43,15 @@ class AppTextField extends StatelessWidget {
             ? null
             : Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: SvgAsset(
-                  leadingIcon!,
-                  color: appColors.grey900,
-                ),
+                child: leadingIcon == '\$'
+                    ? Text(
+                        leadingIcon!,
+                        style: textPreset4.copyWith(color: appColors.beige500),
+                      )
+                    : SvgAsset(
+                        leadingIcon!,
+                        color: appColors.grey900,
+                      ),
               ),
         errorStyle: const TextStyle(height: .0001),
         hintText: hintText,

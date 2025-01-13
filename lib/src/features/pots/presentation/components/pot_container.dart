@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/data/models/pot.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_event.dart';
+import 'package:personal_finance_app/src/features/pots/presentation/components/add_pot_dialog.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
 class PotContainer extends StatelessWidget {
@@ -19,7 +20,13 @@ class PotContainer extends StatelessWidget {
 
     double percentage = (pot.total / pot.target) * 100;
 
-    void onTapEdit() {}
+    void onTapEdit() {
+      AppDialog.dialog(
+        context,
+        AddPotDialog(pot: pot),
+      );
+    }
+
     void onTapDelete() {
       AppDialog.dialog(
         context,

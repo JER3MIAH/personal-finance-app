@@ -98,7 +98,8 @@ class AddBudgetDialog extends HookWidget {
                 widget: AppTextField(
                   controller: maximumSpendController,
                   keyboardType: TextInputType.number,
-                  hintText: '\$',
+                  leadingIcon: '\$',
+                  hintText: '',
                 ),
               ),
               TitledWidget(
