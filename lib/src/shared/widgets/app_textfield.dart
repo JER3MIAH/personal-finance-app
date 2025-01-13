@@ -38,21 +38,31 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType ?? TextInputType.text,
       validator: validator,
       onChanged: onChanged,
+      maxLength: 25,
       decoration: InputDecoration(
+        counterText: '',
         prefixIcon: leadingIcon == null
             ? null
-            : Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: leadingIcon == '\$'
-                    ? Text(
-                        leadingIcon!,
-                        style: textPreset4.copyWith(color: appColors.beige500),
-                      )
-                    : SvgAsset(
-                        leadingIcon!,
-                        color: appColors.grey900,
+            : leadingIcon == '\$'
+                ? SizedBox(
+                    height: 10,
+                    width: 10,
+                    child: Center(
+                      child: Text(
+                        '\$',
+                        style: textPreset4.copyWith(
+                          color: appColors.beige500,
+                        ),
                       ),
-              ),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: SvgAsset(
+                      leadingIcon!,
+                      color: appColors.grey900,
+                    ),
+                  ),
         errorStyle: const TextStyle(height: .0001),
         hintText: hintText,
         hintStyle: textPreset4.copyWith(

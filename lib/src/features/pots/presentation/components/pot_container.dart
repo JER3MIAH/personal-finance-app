@@ -55,7 +55,7 @@ class PotContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildPotTitle(
-                title: 'Savings',
+                title: pot.name,
                 color: potTheme,
               ),
               EditAndDeletePopUpButton(

@@ -57,6 +57,7 @@ class AddPotDialog extends HookWidget {
       padding: EdgeInsets.all(spacing300),
       child: Column(
         spacing: 20,
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
@@ -87,7 +88,6 @@ class AddPotDialog extends HookWidget {
                 title: 'Pot Name',
                 widget: AppTextField(
                   controller: potNameController,
-                  leadingIcon: '\$',
                   hintText: 'e.g. Rainy Days',
                 ),
               ),
@@ -97,7 +97,7 @@ class AddPotDialog extends HookWidget {
                   controller: targetController,
                   keyboardType: TextInputType.number,
                   leadingIcon: '\$',
-                  hintText: '',
+                  hintText: 'e.g. 2000',
                 ),
               ),
               TitledWidget(
