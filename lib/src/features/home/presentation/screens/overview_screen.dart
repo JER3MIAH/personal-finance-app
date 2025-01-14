@@ -10,6 +10,7 @@ class OverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = DeviceType(context).isMobile;
+    final isDesktop = DeviceType(context).isDesktop;
 
     return AppColumn(
       children: [
@@ -61,6 +62,48 @@ class OverviewScreen extends StatelessWidget {
             );
           },
         ),
+        YBox(spacing150),
+        if (isDesktop)
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing150,
+            children: [
+              PotsOverviewContainer(
+                onSeeDetails: () {},
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TransactionsOverviewContainer(
+                      onSeeDetails: () {},
+                    ),
+                  ),
+                  XBox(spacing150),
+                  Expanded(
+                    child: BudgetsOverviewContainer(
+                      onSeeDetails: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          )
+        else
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing150,
+            children: [
+              PotsOverviewContainer(
+                onSeeDetails: () {},
+              ),
+              TransactionsOverviewContainer(
+                onSeeDetails: () {},
+              ),
+              BudgetsOverviewContainer(
+                onSeeDetails: () {},
+              ),
+            ],
+          ),
       ],
     );
   }
