@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
 import 'package:personal_finance_app/src/features/home/presentation/components/components.dart';
 import 'package:personal_finance_app/src/features/transactions/logic/blocs/blocs.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
@@ -9,6 +10,7 @@ class OverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navBloc = context.read<BottomNavBarCubit>();
     final isMobile = DeviceType(context).isMobile;
     final isDesktop = DeviceType(context).isDesktop;
 
@@ -69,19 +71,20 @@ class OverviewScreen extends StatelessWidget {
             spacing: spacing150,
             children: [
               PotsOverviewContainer(
-                onSeeDetails: () {},
+                onSeeDetails: () => navBloc.setIndex(3),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TransactionsOverviewContainer(
-                      onSeeDetails: () {},
+                      onSeeDetails: () => navBloc.setIndex(1),
                     ),
                   ),
                   XBox(spacing150),
                   Expanded(
                     child: BudgetsOverviewContainer(
-                      onSeeDetails: () {},
+                      onSeeDetails: () => navBloc.setIndex(2),
                     ),
                   ),
                 ],
@@ -94,13 +97,13 @@ class OverviewScreen extends StatelessWidget {
             spacing: spacing150,
             children: [
               PotsOverviewContainer(
-                onSeeDetails: () {},
+                onSeeDetails: () => navBloc.setIndex(3),
               ),
               TransactionsOverviewContainer(
-                onSeeDetails: () {},
+                onSeeDetails: () => navBloc.setIndex(1),
               ),
               BudgetsOverviewContainer(
-                onSeeDetails: () {},
+                onSeeDetails: () => navBloc.setIndex(2),
               ),
             ],
           ),

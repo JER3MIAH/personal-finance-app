@@ -24,6 +24,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   void _addNewTransaction(
       AddNewTransaction event, Emitter<TransactionState> emit) {
     final transactions = [event.transaction, ...state.transactions];
+    localService.addNewTransaction(event.transaction);
     emit(state.copyWith(transactions: transactions));
   }
 

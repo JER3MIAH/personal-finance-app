@@ -51,7 +51,7 @@ class TransactionTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '${transaction.debit ? '-' : '+'}\$${transaction.amount}',
+                  '${transaction.debit ? '-' : '+'}\$${transaction.amount.toString().replaceAll('-', '')}',
                   style: textPreset4Bold.copyWith(
                     color: !transaction.debit ? appColors.green : null,
                   ),
@@ -140,7 +140,7 @@ TableRow transactionRow({
         ),
       ),
       _tableCell(
-        '${transaction.debit ? '-' : '+'}\$${transaction.amount}',
+        '${transaction.debit ? '-' : '+'}\$${transaction.amount.toString().replaceAll('-', '')}',
         style: textPreset4Bold.copyWith(
           color: !transaction.debit ? appColors.green : null,
         ),

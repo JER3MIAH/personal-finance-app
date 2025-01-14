@@ -99,7 +99,7 @@ class AddBudgetDialog extends HookWidget {
                   controller: maximumSpendController,
                   keyboardType: TextInputType.number,
                   leadingIcon: '\$',
-                  hintText: '',
+                  hintText: 'e.g 2000',
                 ),
               ),
               TitledWidget(
