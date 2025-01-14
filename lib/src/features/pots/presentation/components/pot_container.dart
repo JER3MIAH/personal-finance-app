@@ -4,6 +4,7 @@ import 'package:personal_finance_app/src/features/pots/data/models/pot.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_event.dart';
 import 'package:personal_finance_app/src/features/pots/presentation/components/add_pot_dialog.dart';
+import 'package:personal_finance_app/src/features/pots/presentation/components/components.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
 class PotContainer extends StatelessWidget {
@@ -117,11 +118,15 @@ class PotContainer extends StatelessWidget {
             children: [
               _buildButton(
                 title: '+ Add Money',
-                onTap: () {},
+                onTap: () {
+                  AppDialog.dialog(context, AddToPotDialog(pot: pot));
+                },
               ),
               _buildButton(
                 title: 'Withdraw',
-                onTap: () {},
+                onTap: () {
+                  AppDialog.dialog(context, WithdrawFromPotDialog(pot: pot));
+                },
               ),
             ],
           ),

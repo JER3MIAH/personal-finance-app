@@ -24,6 +24,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
   void _addNewPot(AddNewPot event, Emitter<PotsState> emit) {
     final pots = [event.pot, ...state.pots];
+    localService.addNewPot(event.pot);
     emit(state.copyWith(pots: pots));
   }
 

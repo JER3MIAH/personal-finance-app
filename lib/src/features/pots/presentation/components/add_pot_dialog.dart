@@ -115,6 +115,11 @@ class AddPotDialog extends HookWidget {
             title: pot == null ? 'Add Pot' : 'Save Changes',
             color: appColors.black,
             onTap: () {
+              if (potNameController.text.trim().isEmpty ||
+                  targetController.text.trim().isEmpty ||
+                  potTheme.value.isEmpty) {
+                return;
+              }
               AppNavigator(context).popDialog();
               if (pot == null) {
                 addPot();
