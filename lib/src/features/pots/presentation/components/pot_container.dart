@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/data/models/pot.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_bloc.dart';
 import 'package:personal_finance_app/src/features/pots/logic/blocs/pots_bloc/pots_event.dart';
-import 'package:personal_finance_app/src/features/pots/presentation/components/add_pot_dialog.dart';
 import 'package:personal_finance_app/src/features/pots/presentation/components/components.dart';
 import 'package:personal_finance_app/src/shared/shared.dart';
 
