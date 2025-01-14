@@ -9,6 +9,8 @@ class OverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = DeviceType(context).isMobile;
+
     return Scaffold(
       body: AppColumn(
         children: [
@@ -33,22 +35,30 @@ class OverviewScreen extends StatelessWidget {
                     0.0,
                     (prev, trans) => prev + trans.amount,
                   );
+              final children = [
+                BalanceContainer(
+                  title: 'Current Balance',
+                  balance: (income - expenses),
+                ),
+                BalanceContainer(
+                  title: 'Income',
+                  balance: income,
+                ),
+                BalanceContainer(
+                  title: 'Expenses',
+                  balance: expenses,
+                ),
+              ];
+              if (isMobile) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: spacing150,
+                  children: children,
+                );
+              }
               return Row(
                 spacing: spacing150,
-                children: [
-                  BalanceContainer(
-                    title: 'Current Balance',
-                    balance: (income - expenses),
-                  ),
-                  BalanceContainer(
-                    title: 'Income',
-                    balance: income,
-                  ),
-                  BalanceContainer(
-                    title: 'Expenses',
-                    balance: expenses,
-                  ),
-                ],
+                children: children,
               );
             },
           ),
