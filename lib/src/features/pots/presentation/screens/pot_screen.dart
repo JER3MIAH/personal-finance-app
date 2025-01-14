@@ -19,8 +19,7 @@ class PotScreen extends StatelessWidget {
       AppDialog.dialog(context, AddPotDialog());
     }
 
-    return Scaffold(
-      body: BlocBuilder<PotsBloc, PotsState>(
+    return BlocBuilder<PotsBloc, PotsState>(
         builder: (_, potState) {
           final pots = potState.pots;
 
@@ -90,7 +89,6 @@ class PotScreen extends StatelessWidget {
             ],
           );
         },
-      ),
-    );
+      );
   }
 }
