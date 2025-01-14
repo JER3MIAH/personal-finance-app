@@ -16,9 +16,57 @@ class PotsOverviewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = DeviceType(context).isMobile;
+
     return BlocBuilder<PotsBloc, PotsState>(
       builder: (context, state) {
         final pots = state.pots;
+
+        final children = [
+          Container(
+            width: isMobile ? null : 274,
+            height: 117,
+            padding: EdgeInsets.all(spacing300),
+            decoration: BoxDecoration(
+              color: appColors.beige100,
+              borderRadius: BorderRadius.circular(spacing150),
+            ),
+            child: Row(
+              spacing: spacing150,
+              children: [
+                SvgAsset(iconPot),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total Saved',
+                      style: textPreset4.copyWith(color: appColors.grey500),
+                    ),
+                    Text(
+                      '\$${pots.fold(
+                        0.0,
+                        (prev, pot) => prev + pot.total,
+                      )}',
+                      style: textPreset1,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Wrap(
+            spacing: spacing150,
+            children: List.generate(
+              pots.length > 4 ? 4 : pots.length,
+              (index) => Padding(
+                padding: EdgeInsets.only(bottom: isMobile ? 5 : 0),
+                child: _buildPotItem(
+                  pot: pots[index],
+                ),
+              ),
+            ),
+          ),
+        ];
 
         return Container(
           padding: EdgeInsets.all(spacing300),
@@ -42,52 +90,16 @@ class PotsOverviewContainer extends StatelessWidget {
                 ],
               ),
               YBox(spacing300),
-              Row(
-                spacing: spacing200,
-                children: [
-                  Container(
-                    width: 274,
-                    height: 117,
-                    padding: EdgeInsets.all(spacing300),
-                    decoration: BoxDecoration(
-                      color: appColors.beige100,
-                      borderRadius: BorderRadius.circular(spacing150),
-                    ),
-                    child: Row(
-                      spacing: spacing150,
-                      children: [
-                        SvgAsset(iconPot),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Total Saved',
-                              style: textPreset4.copyWith(
-                                  color: appColors.grey500),
-                            ),
-                            Text(
-                              '\$${pots.fold(
-                                0.0,
-                                (prev, pot) => prev + pot.total,
-                              )}',
-                              style: textPreset1,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Wrap(
-                    spacing: spacing150,
-                    children: List.generate(
-                      pots.length > 4 ? 4 : pots.length,
-                      (index) => _buildPotItem(
-                        pot: pots[index],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              if (isMobile)
+                Column(
+                  spacing: spacing200,
+                  children: children,
+                )
+              else
+                Row(
+                  spacing: spacing200,
+                  children: children,
+                ),
             ],
           ),
         );
